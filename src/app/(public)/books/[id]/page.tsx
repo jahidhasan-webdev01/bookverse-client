@@ -22,7 +22,9 @@ export default async function BookDetailsPage({ params }: Props) {
     const { id } = await params;
 
     const book: IBook = await getBook(id);
-    const books: IBook[] = await getBooks();
+    const { data: books } = await getBooks({
+        limit: 100,
+    });
 
     const relatedBooks = books
         .filter((item) => item._id !== id)
@@ -85,8 +87,8 @@ export default async function BookDetailsPage({ params }: Props) {
                                     <div>
                                         <span
                                             className={`rounded-full px-3 py-1 text-xs font-medium ${book.status === "Available"
-                                                    ? "bg-emerald-100 text-emerald-700"
-                                                    : "bg-red-100 text-red-600"
+                                                ? "bg-emerald-100 text-emerald-700"
+                                                : "bg-red-100 text-red-600"
                                                 }`}
                                         >
                                             {book.status}
@@ -107,8 +109,8 @@ export default async function BookDetailsPage({ params }: Props) {
                                 <button
                                     disabled={book.status === "Borrowed"}
                                     className={`mt-8 w-fit rounded-xl px-6 py-3 text-sm font-medium transition ${book.status === "Available"
-                                            ? "bg-blue-600 text-white hover:bg-blue-700"
-                                            : "cursor-not-allowed bg-gray-300 text-gray-600"
+                                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                                        : "cursor-not-allowed bg-gray-300 text-gray-600"
                                         }`}
                                 >
                                     {book.status === "Available"
