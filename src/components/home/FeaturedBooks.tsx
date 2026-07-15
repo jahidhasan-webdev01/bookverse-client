@@ -8,7 +8,9 @@ import Container from "../shared/Container";
 import SectionTitle from "../shared/SectionTitle";
 
 export default async function FeaturedBooks() {
-    const books = await getBooks(8);
+    const { data: books } = await getBooks({
+        limit: 8,
+    });
 
     if (!books.length) {
         return (

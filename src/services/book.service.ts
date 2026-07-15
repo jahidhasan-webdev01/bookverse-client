@@ -1,10 +1,54 @@
 import { fetcher } from "@/lib/fetcher";
 import { IBook } from "@/types/book";
 
-export async function getBooks(limit = 8): Promise<IBook[]> {
-    const res = await fetcher(`/books?limit=${limit}`);
+interface GetBooksParams {
+    searchTerm?: string;
+    category?: string;
+    status?: string;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+    page?: number;
+    limit?: number;
+}
 
-    return res.data;
+interface BooksResponse {
+    meta: {
+        page: number;
+        limit: number;
+        total: number;
+        totalPage: number;
+    };
+    data: IBook[];
+}
+
+export async function getBooks(
+    params: GetBooksParams = {}
+): Promise<BooksResponse> {
+    const searchParams = new URLSearchParams();
+
+    if (params.searchTerm)
+        searchParams.set("searchTerm", params.searchTerm);
+
+    if (params.category)
+        searchParams.set("category", params.category);
+
+    if (params.status)
+        searchParams.set("status", params.status);
+
+    if (params.sortBy)
+        searchParams.set("sortBy", params.sortBy);
+
+    if (params.sortOrder)
+        searchParams.set("sortOrder", params.sortOrder);
+
+    if (params.page)
+        searchParams.set("page", params.page.toString());
+
+    searchParams.set("limit", (params.limit ?? 8).toString());
+
+    const res = await fetcher(`/books?${searchParams.toString()}`);
+
+    return res;
 }
 
 export async function getBook(id: string) {
