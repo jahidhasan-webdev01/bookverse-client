@@ -11,6 +11,19 @@ interface GetBooksParams {
     limit?: number;
 }
 
+export interface CreateBookPayload {
+    title: string;
+    author: string;
+    category: string;
+    shortDescription: string;
+    description: string;
+    coverImage: string;
+    publishedYear: number;
+    pages: number;
+    rating: number;
+    status: "Available" | "Borrowed";
+}
+
 interface BooksResponse {
     meta: {
         page: number;
@@ -44,11 +57,12 @@ export async function getBooks(
     if (params.page)
         searchParams.set("page", params.page.toString());
 
-    searchParams.set("limit", (params.limit ?? 8).toString());
+    searchParams.set(
+        "limit",
+        (params.limit ?? 8).toString()
+    );
 
-    const res = await fetcher(`/books?${searchParams.toString()}`);
-
-    return res;
+    return fetcher(`/books?${searchParams.toString()}`);
 }
 
 export async function getBook(id: string) {
@@ -57,34 +71,26 @@ export async function getBook(id: string) {
     return res.data;
 }
 
-export async function getMyBooks(token: string) {
-    const res = await fetcher("/books/my-books", {
-        token,
-    });
+export async function getMyBooks() {
+    const res = await fetcher("/books/my-books");
 
     return res.data;
 }
 
 export async function createBook(
-    payload: unknown,
-    token: string
+    payload: CreateBookPayload
 ) {
     const res = await fetcher("/books", {
         method: "POST",
         body: JSON.stringify(payload),
-        token,
     });
 
     return res.data;
 }
 
-export async function deleteBook(
-    id: string,
-    token: string
-) {
+export async function deleteBook(id: string) {
     const res = await fetcher(`/books/${id}`, {
         method: "DELETE",
-        token,
     });
 
     return res.data;
