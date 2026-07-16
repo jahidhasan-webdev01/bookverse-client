@@ -39,6 +39,15 @@ export default function Navbar() {
             name: "About",
             href: "/about",
         },
+
+        ...(user
+            ? [
+                {
+                    name: "Dashboard",
+                    href: "/dashboard",
+                },
+            ]
+            : []),
     ];
 
 
@@ -60,7 +69,7 @@ export default function Navbar() {
 
                         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white">
 
-                            <BookOpen size={20}/>
+                            <BookOpen size={20} />
 
                         </div>
 
@@ -78,7 +87,7 @@ export default function Navbar() {
 
 
                         {
-                            navLinks.map((item)=>(
+                            navLinks.map((item) => (
                                 <Link
                                     key={item.href}
                                     href={item.href}
@@ -104,16 +113,10 @@ export default function Navbar() {
 
                                 <>
 
-                                    <Link
-                                        href="/dashboard"
-                                        className="flex items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium transition hover:border-blue-500 hover:text-blue-600"
-                                    >
-
-                                        <User size={16}/>
-
+                                    <button className="flex items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">
+                                        <User size={16} />
                                         {user.name}
-
-                                    </Link>
+                                    </button>
 
 
                                     <button
@@ -121,7 +124,7 @@ export default function Navbar() {
                                         className="flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
                                     >
 
-                                        <LogOut size={16}/>
+                                        <LogOut size={16} />
 
                                         Logout
 
@@ -170,10 +173,10 @@ export default function Navbar() {
 
                         {
                             open
-                            ?
-                            <X/>
-                            :
-                            <Menu/>
+                                ?
+                                <X />
+                                :
+                                <Menu />
                         }
 
                     </button>
@@ -189,102 +192,95 @@ export default function Navbar() {
                 {/* Mobile Menu */}
                 <AnimatePresence>
 
-                {
-                    open && (
+                    {
+                        open && (
 
-                        <motion.div
-                            initial={{
-                                opacity:0,
-                                height:0
-                            }}
-                            animate={{
-                                opacity:1,
-                                height:"auto"
-                            }}
-                            exit={{
-                                opacity:0,
-                                height:0
-                            }}
-                            className="overflow-hidden md:hidden"
-                        >
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    height: 0
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    height: "auto"
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    height: 0
+                                }}
+                                className="overflow-hidden md:hidden"
+                            >
 
-                            <div className="space-y-3 border-t border-gray-100 py-5">
-
-
-                                {
-                                    navLinks.map((item)=>(
-                                        <Link
-                                            key={item.href}
-                                            href={item.href}
-                                            onClick={()=>setOpen(false)}
-                                            className="block text-sm font-medium text-gray-600 hover:text-blue-600"
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))
-                                }
+                                <div className="space-y-3 border-t border-gray-100 py-5">
 
 
-
-                                {
-                                    user ? (
-
-                                        <>
-
+                                    {
+                                        navLinks.map((item) => (
                                             <Link
-                                                href="/dashboard"
-                                                className="block text-sm font-medium text-blue-600"
+                                                key={item.href}
+                                                href={item.href}
+                                                onClick={() => setOpen(false)}
+                                                className="block text-sm font-medium text-gray-600 hover:text-blue-600"
                                             >
-                                                Dashboard
+                                                {item.name}
                                             </Link>
+                                        ))
+                                    }
 
 
-                                            <button
-                                                onClick={logout}
-                                                className="flex items-center gap-2 text-sm font-medium text-red-500"
-                                            >
 
-                                                <LogOut size={15}/>
+                                    {
+                                        user ? (
 
-                                                Logout
-
-                                            </button>
-
-                                        </>
+                                            <>
 
 
-                                    ) : (
+                                                <button
+                                                    onClick={logout}
+                                                    className="flex items-center gap-2 text-sm font-medium text-red-500"
+                                                >
 
-                                        <div className="flex gap-3 pt-3">
+                                                    <LogOut size={15} />
 
-                                            <Link
-                                                href="/login"
-                                                className="text-sm text-gray-600"
-                                            >
-                                                Login
-                                            </Link>
+                                                    Logout
 
+                                                </button>
 
-                                            <Link
-                                                href="/register"
-                                                className="text-sm text-blue-600"
-                                            >
-                                                Register
-                                            </Link>
-
-                                        </div>
-
-                                    )
-                                }
+                                            </>
 
 
-                            </div>
+                                        ) : (
+
+                                            <div className="flex gap-3 pt-3">
+
+                                                <Link
+                                                    href="/login"
+                                                    className="text-sm text-gray-600"
+                                                >
+                                                    Login
+                                                </Link>
 
 
-                        </motion.div>
+                                                <Link
+                                                    href="/register"
+                                                    className="text-sm text-blue-600"
+                                                >
+                                                    Register
+                                                </Link>
 
-                    )
-                }
+                                            </div>
+
+                                        )
+                                    }
+
+
+                                </div>
+
+
+                            </motion.div>
+
+                        )
+                    }
 
                 </AnimatePresence>
 

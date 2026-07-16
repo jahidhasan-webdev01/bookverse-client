@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { Loader2, PlusCircle } from "lucide-react";
+import { createBook } from "@/services/book.client.service";
 
-import { createBook } from "@/services/book.service";
 
 export default function AddBookForm() {
     const router = useRouter();
@@ -39,10 +39,12 @@ export default function AddBookForm() {
             rating: Number(
                 (form.elements.namedItem("rating") as HTMLInputElement).value
             ),
-            status: (form.elements.namedItem("status") as HTMLSelectElement).value,
-            coverImage: (
-                form.elements.namedItem("coverImage") as HTMLInputElement
-            ).value,
+            status: (
+                form.elements.namedItem("status") as HTMLSelectElement
+            ).value as "Available" | "Borrowed",
+            coverImage:
+                (form.elements.namedItem("coverImage") as HTMLInputElement).value ||
+                undefined,
         };
 
         try {

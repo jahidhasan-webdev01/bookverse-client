@@ -40,15 +40,11 @@ export interface CreateBookPayload {
     title: string;
     author: string;
     category: string;
-
     shortDescription: string;
     description: string;
-
-    coverImage: string;
-
+    coverImage?: string; // optional
     publishedYear: number;
     pages: number;
     rating: number;
-
     status: "Available" | "Borrowed";
 }
