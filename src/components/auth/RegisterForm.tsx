@@ -28,13 +28,17 @@ export default function RegisterForm() {
     ) {
         e.preventDefault();
 
-        const form = e.currentTarget;
+
+        const formData = new FormData(
+            e.currentTarget
+        );
 
 
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        const confirmPassword = form.confirmPassword.value;
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+        const confirmPassword = formData.get("confirmPassword") as string;
+
 
 
         if (password !== confirmPassword) {
@@ -53,6 +57,11 @@ export default function RegisterForm() {
                 email,
                 password,
             });
+
+
+            toast.success(
+                "Registration successful"
+            );
 
 
             router.push("/login");
