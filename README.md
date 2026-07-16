@@ -1,242 +1,266 @@
-# 🛍️ NextMart
+# BookVerse - Full Stack Book Management Application
 
-A modern, beginner-friendly e-commerce application built with **Next.js 15**, **TypeScript**, **MongoDB**, and **Next.js API Routes**. This project demonstrates how to build a full-stack application using the App Router, secure authentication, protected routes, and CRUD operations while following a clean and scalable architecture.
-
----
-
-## 🚀 Features
-
-- ⚡ Next.js 15 App Router
-- 🔷 TypeScript
-- 🎨 Tailwind CSS
-- 🧩 shadcn/ui Components
-- 🗄️ MongoDB (Native Driver)
-- 🔌 Next.js API Routes
-- 🔐 JWT Authentication
-- 🍪 HTTP-only Cookie Authentication
-- 🛡️ Protected Routes using Middleware
-- 📦 Product CRUD API
-- 🛒 Product Listing
-- 📄 Product Details
-- ➕ Create Product (Protected)
-- ✏️ Manage Products (Protected)
-- 📱 Fully Responsive Design
-- 📂 Clean Folder Structure
+BookVerse is a production-ready full-stack web application built with **Next.js, TypeScript, Express.js, MongoDB, and JWT Authentication**. The platform allows users to explore books, manage their own book collections, and perform secure CRUD operations with a clean and responsive user interface.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Live Website
 
-### Frontend
-
-- Next.js 15
-- React
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Lucide React
-
-### Backend
-
-- Next.js API Routes
-- MongoDB Native Driver
-- JWT
-- bcryptjs
+```
+https://bookverse-client-three.vercel.app
+```
 
 ---
 
-## 📁 Project Structure
+## 📂 Repository Links
 
-```text
+Frontend Repository:
+
+```
+https://github.com/jahidhasan-webdev01/bookverse-client
+```
+
+Backend Repository:
+
+```
+https://github.com/jahidhasan-webdev01/bookverse-server
+```
+
+---
+
+# ✨ Features
+
+## 🔐 Authentication System
+
+* User registration and login
+* JWT based authentication
+* Secure HTTP-only cookie storage
+* Protected dashboard routes
+* Password validation
+* Error handling with toast notifications
+
+---
+
+## 📚 Book Management
+
+Users can:
+
+* View all available books
+* Search books
+* Filter books by category/status
+* View book details
+* Add new books
+* Manage their own books
+* Delete books
+
+---
+
+## 🏠 Landing Page
+
+Implemented:
+
+* Responsive navbar
+* Hero section with CTA
+* Featured books section
+* Categories section
+* Statistics section
+* Features section
+* About section
+* Newsletter/CTA section
+* Footer with useful links
+
+---
+
+## 📖 Books Listing
+
+Features:
+
+* Dynamic book listing
+* Responsive book cards
+* Search functionality
+* Category filtering
+* Status filtering
+* Sorting
+* Pagination support
+* Loading states
+
+---
+
+## 📄 Book Details Page
+
+Includes:
+
+* Book cover image
+* Book information
+* Description
+* Author details
+* Category
+* Published year
+* Rating
+* Related information
+
+---
+
+## 🛡️ Dashboard
+
+Protected dashboard includes:
+
+### Add Book
+
+Users can add books with:
+
+* Title
+* Author
+* Category
+* Short description
+* Full description
+* Cover image URL
+* Published year
+* Number of pages
+* Rating
+* Availability status
+
+### My Books
+
+Users can:
+
+* View added books
+* Manage their books
+* Delete books
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
+
+* Next.js 16 (App Router)
+* TypeScript
+* React.js
+* Tailwind CSS
+* Framer Motion
+* React Hot Toast
+* Lucide React Icons
+
+## Backend
+
+* Node.js
+* Express.js
+* TypeScript
+* MongoDB
+* Mongoose
+* JWT Authentication
+* Cookie Parser
+* Zod Validation
+
+---
+
+# 📁 Project Structure
+
+## Frontend
+
+```
 src
-│
 ├── app
-│   ├── api
-│   │   ├── login
-│   │   ├── logout
-│   │   ├── me
-│   │   └── products
-│   │       └── [id]
-│   │
-│   ├── products
-│   │   ├── create
-│   │   ├── manage
-│   │   └── [id]
-│   │
-│   ├── login
-│   ├── signup
-│   └── about
-│
 ├── components
-│
-├── providers
-│   └── AuthProvider.tsx
-│
-├── hooks
-│   └── useAuth.ts
-│
-├── lib
-│   └── mongoConnect.ts
-│
+├── context
+├── services
 ├── types
-│
-└── middleware.ts
+└── lib
+```
+
+## Backend
+
+```
+src
+├── app
+│   ├── controllers
+│   ├── services
+│   ├── routes
+│   ├── models
+│   └── middlewares
+├── app.ts
+└── server.ts
 ```
 
 ---
 
-## 🔐 Authentication
+# 🔒 Security Features
 
-Authentication is implemented using:
+* JWT authentication
+* HTTP-only cookies
+* Protected API routes
+* Input validation using Zod
+* Password hashing using bcrypt
+* CORS configuration
+* Error handling middleware
 
-- JWT
-- HTTP-only Cookies
-- bcrypt Password Hashing
-- Protected Routes with Next.js Middleware
+---
 
-Authentication flow:
+# 📱 Responsive Design
 
-```text
-User Login
-      │
-      ▼
-API Route (/api/login)
-      │
-      ▼
-Verify Credentials
-      │
-      ▼
-Generate JWT
-      │
-      ▼
-Store HTTP-only Cookie
-      │
-      ▼
-Protected Pages & APIs
+The application is fully responsive for:
+
+* Mobile devices
+* Tablets
+* Desktop screens
+
+Implemented:
+
+* Responsive navbar
+* Mobile dashboard sidebar
+* Adaptive layouts
+* Consistent UI components
+
+---
+
+# 🧪 Demo Credentials
+
+## User Account
+
+Email:
+
+```
+your-user-email@example.com
+```
+
+Password:
+
+```
+your-password
+```
+
+## Admin Account
+
+Email:
+
+```
+your-admin-email@example.com
+```
+
+Password:
+
+```
+your-password
 ```
 
 ---
 
-## 📦 Product APIs
+# 📌 Future Improvements
 
-| Method | Endpoint            | Description        |
-| ------ | ------------------- | ------------------ |
-| GET    | `/api/products`     | Get all products   |
-| GET    | `/api/products/:id` | Get single product |
-| POST   | `/api/products`     | Create product     |
-| PUT    | `/api/products/:id` | Update product     |
-| DELETE | `/api/products/:id` | Delete product     |
+* Google authentication
+* Book borrowing system
+* User reviews and comments
+* Admin management panel
+* Advanced analytics dashboard
 
 ---
 
-## 🔒 Protected Routes
+# 👨‍💻 Developer
 
-The following routes require authentication:
+**Md. Jahid Hasan**
 
-- `/products/create`
-- `/products/manage`
-
-Protection is handled using **Next.js Middleware**.
+Computer Science Graduate
+Full Stack Web Developer
 
 ---
-
-## ⚙️ Environment Variables
-
-Create a `.env.local` file.
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-DATABASE_NAME=nextmart
-JWT_SECRET=your_secret_key
-```
-
----
-
-## 📥 Installation
-
-Clone the repository.
-
-```bash
-git clone <repository-url>
-```
-
-Navigate to the project.
-
-```bash
-cd nextmart
-```
-
-Install dependencies.
-
-```bash
-npm install
-```
-
-Run the development server.
-
-```bash
-npm run dev
-```
-
-Open:
-
-```
-http://localhost:3000
-```
-
----
-
-## 📚 Learning Objectives
-
-This project helps you learn:
-
-- Next.js App Router
-- TypeScript Fundamentals
-- MongoDB CRUD Operations
-- RESTful API Development
-- Authentication with JWT
-- HTTP-only Cookie Sessions
-- Next.js Middleware
-- Protected Routes
-- React Context API
-- Custom Hooks
-- Server and Client Components
-- Folder Organization
-- Clean Architecture
-
----
-
-## 📈 Future Improvements
-
-- Product Search
-- Category Filtering
-- Shopping Cart
-- Wishlist
-- Checkout Flow
-- Order Management
-- User Dashboard
-- Admin Dashboard
-- Image Upload
-- Pagination
-- Product Reviews
-- Payment Gateway Integration
-- Email Verification
-- Password Reset
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Push your branch.
-5. Open a Pull Request.
-
----
-
-## 📄 License
-
-This project is intended for educational purposes and is open for learning, modification, and experimentation.
